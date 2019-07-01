@@ -1,0 +1,65 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 1050px;
+  margin: auto;
+}
+
+.header {
+  background-color: rgb(146, 146, 146);
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40px;
+  align-items: center;
+  &-logo,
+  &-profile {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 0 20px;
+  }
+
+  &-logo {
+    font-size: 25px;
+  }
+
+  &-profile {
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &-img {
+      border-radius: 50px;
+      background-color: rgb(146, 146, 146);
+      height: 20px;
+      width: 20px;
+      margin: 5px;
+    }
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(212, 212, 212);
+  flex-grow: 1;
+}
+
+.section {
+  width: 75%;
+  padding: 10px;
+}
+
+.aside {
+  width: 25%;
+  background-color: rgb(235, 235, 235);
+  padding: 10px;
+}

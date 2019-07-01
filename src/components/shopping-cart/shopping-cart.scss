@@ -1,0 +1,27 @@
+.shopping-cart {
+  &-list {
+  }
+
+  &-total {
+    display: flex;
+    flex-direction: row;
+    flex-grow: auto;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(15, 219, 0);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: rgb(23, 96, 17);
+
+    &-label {
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+
+    &-amount {
+      font-size: 24px;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+  }
+}
