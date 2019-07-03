@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.scss';
-import HotelItem from './components/hotel-item/hotel-item';
 import ShoppingCart from './components/shopping-cart/shopping-cart';
+import HotelsList from './components/hotels-list/hotels-list';
 import { Provider } from 'react-redux';
 import Store from './store/configureStore';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 interface Hotel {
     id: number;
@@ -53,27 +54,31 @@ class App extends Component<MyProps, MyState> {
 
         return (
             <Provider store={Store}>
-                <div className="App">
-                    <header className="header">
-                        <nav className="nav container">
-                            <div className="nav-logo">LOGO</div>
-                            <div className="nav-profile">
-                                <div className="nav-profile-img" />
-                                <div>John Doe</div>
-                            </div>
-                        </nav>
-                    </header>
-                    <main className="main container">
-                        <section className="section">
-                            {hotelsList.map((hotel, index) => (
-                                <HotelItem hotel={hotel} key={index} />
-                            ))}
-                        </section>
-                        <aside className="aside">
-                            <ShoppingCart />
-                        </aside>
-                    </main>
-                </div>
+                <Router>
+                    <div className="App">
+                        <header className="header">
+                            <nav className="nav container">
+                                <div className="nav-logo">LOGO</div>
+                                <div className="nav-profile">
+                                    <div className="nav-profile-img" />
+                                    <div>John Doe</div>
+                                </div>
+                            </nav>
+                        </header>
+                        <main className="main container">
+                            <section className="section">
+                                <Route
+                                    path="/"
+                                    exact
+                                    render={(): any => <HotelsList hotelsList={hotelsList} />}
+                                />
+                            </section>
+                            <aside className="aside">
+                                <ShoppingCart />
+                            </aside>
+                        </main>
+                    </div>
+                </Router>
             </Provider>
         );
     }
