@@ -1,89 +1,108 @@
 .hotel-item {
-  background-color: rgb(255, 255, 255);
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  transition: all ease 0.4s;
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-  height: 150px;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: all ease 0.4s;
+    margin: 10px;
+    // overflow: hidden;
+    height: auto;
 
-  &:hover {
-    transform: scale(1.02);
-    // box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.2);
+    &:hover {
+        transform: scale(1.02);
 
-    .hotel-item-image {
-      div {
-        width: 220px;
-        background-size: 102%;
-      }
-    }
-  }
-
-  &-image {
-    height: 200%;
-
-    & > div {
-      height: 100%;
-      width: 200px;
-      background-size: 100%;
-      background-position: center;
-      clip-path: inset(0% 0 0% 0 round 0 100% 100% 0);
-      transition: all ease 0.4s;
-    }
-  }
-
-  &-description {
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-
-    &-top {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-
-      &-name {
-        h2 {
-          font-size: 24px;
-          line-height: 30px;
-          font-weight: bold;
+        .hotel-item-image {
+            div {
+                width: 220px;
+                background-size: 102%;
+            }
         }
-      }
-
-      &-price {
-        p {
-          margin: 0;
-        }
-
-        &-value {
-          font-size: 24px;
-          line-height: 24px;
-          font-weight: bold;
-          text-align: center;
-        }
-
-        &-text {
-          color: rgb(134, 134, 134);
-          font-size: 12px;
-          line-height: 16px;
-          text-align: center;
-        }
-      }
     }
 
-    &-bottom {
-      p {
-        text-align: left;
-        color: rgb(134, 134, 134);
-        font-size: 14px;
-        margin: 0;
-      }
+    &-overview {
+        cursor: pointer;
+        justify-content: start;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        transition: all ease 0.4s;
+        overflow: hidden;
+        height: 150px;
     }
-  }
+
+    &-image {
+        height: 200%;
+        width: 35%;
+
+        & > div {
+            height: 100%;
+            width: 200px;
+            background-size: 120%;
+            background-position: center;
+            clip-path: inset(0% 0 0% 0 round 0 100% 100% 0);
+            transition: all ease 0.4s;
+        }
+    }
+
+    &-description {
+        padding: 10px 20px;
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        align-self: start;
+
+        &-top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            &-name {
+                h2 {
+                    font-size: 24px;
+                    line-height: 30px;
+                    font-weight: bold;
+                }
+            }
+
+            &-price {
+                p {
+                    margin: 0;
+                }
+
+                &-value {
+                    font-size: 24px;
+                    line-height: 24px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                &-text {
+                    color: rgb(134, 134, 134);
+                    font-size: 12px;
+                    line-height: 16px;
+                    text-align: center;
+                }
+            }
+        }
+
+        &-bottom {
+            p {
+                text-align: left;
+                color: rgb(134, 134, 134);
+                font-size: 14px;
+                margin: 0;
+            }
+        }
+    }
+
+    &-date-picker {
+        height: 0;
+        overflow: hidden;
+    }
+
+    &.active {
+        .hotel-item-date-picker {
+            height: auto;
+        }
+    }
 }

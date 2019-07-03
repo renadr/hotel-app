@@ -1,34 +1,97 @@
 import React, { Component } from 'react';
 import './hotel-item.scss';
+import 'react-dates/initialize';
+import { connect } from 'react-redux';
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+import { string } from 'prop-types';
 
-const bg = require('./85736918.jpg');
-
-export default class HotelItem extends Component {
-  render() {
-    return (
-      <div className="hotel-item">
-        <div className="hotel-item-image">
-          <div style={{ backgroundImage: `url(${bg})` }} />
-        </div>
-        <div className="hotel-item-description">
-          <div className="hotel-item-description-top">
-            <div className="hotel-item-description-top-name">
-              <h2>Hotel de la plage</h2>
-            </div>
-            <div className="hotel-item-description-top-price">
-              <p className="hotel-item-description-top-price-value">400€</p>
-              <p className="hotel-item-description-top-price-text">prix/nuit</p>
-            </div>
-          </div>
-          <div className="hotel-item-description-bottom">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, quos iste sapiente eius,
-              sed vitae eum possimus illo velit nobis nulla laborum porro exercitationem fugiat
-              autem harum perspiciatis? Vel, quisquam!
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+interface Hotel {
+    id: number;
+    name: string;
+    description: string;
+    imgUrl: string;
+    price: number;
 }
+
+interface MyProps {
+    hotel: Hotel;
+    dispatch: any;
+    bookedHotels: any;
+}
+
+interface MyState {
+    startDate: any;
+    endDate: any;
+    focusedInput: any;
+}
+
+class HotelItem extends Component<MyProps, MyState> {
+    public constructor(props) {
+        super(props);
+        this._addFavoriteToCart = this._addFavoriteToCart.bind(this);
+    }
+
+    public state: MyState = {
+        startDate: null,
+        endDate: null,
+        focusedInput: null
+    };
+
+    public _addFavoriteToCart(): void {
+        const { hotel, dispatch } = this.props;
+        const action = { type: 'BOOKING', value: hotel };
+        dispatch(action);
+    }
+
+    public render(): JSX.Element {
+        const { hotel } = this.props;
+        const { startDate, endDate, focusedInput } = this.state;
+
+        return (
+            <div className="hotel-item" onClick={this._addFavoriteToCart}>
+                <div className="hotel-item-overview">
+                    <div className="hotel-item-image">
+                        <div style={{ backgroundImage: `url(${hotel.imgUrl})` }} />
+                    </div>
+                    <div className="hotel-item-description">
+                        <div className="hotel-item-description-top">
+                            <div className="hotel-item-description-top-name">
+                                <h2>{hotel.name}</h2>
+                            </div>
+                            <div className="hotel-item-description-top-price">
+                                <p className="hotel-item-description-top-price-value">
+                                    {hotel.price}€
+                                </p>
+                                <p className="hotel-item-description-top-price-text">prix/nuit</p>
+                            </div>
+                        </div>
+                        <div className="hotel-item-description-bottom">
+                            <p>{hotel.description}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="hotel-item-date-picker">
+                    <DateRangePicker
+                        startDate={startDate} // momentPropTypes.momentObj or null,
+                        startDateId="a" // PropTypes.string.isRequired,
+                        endDate={endDate} // momentPropTypes.momentObj or null,
+                        endDateId="b" // PropTypes.string.isRequired,
+                        onDatesChange={({ startDate, endDate }) =>
+                            this.setState({ startDate, endDate })
+                        } // PropTypes.func.isRequired,
+                        focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                        onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                    />
+                </div>
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        bookedHotels: state.bookedHotels
+    };
+};
+export default connect(mapStateToProps)(HotelItem);
