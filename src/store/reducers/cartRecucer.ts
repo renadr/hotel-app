@@ -25,6 +25,11 @@ function addToCart(state = initialState, action): any {
                 )
             };
             return nextState || state;
+        case 'CLEAR_CART':
+            nextState = {
+                bookedHotels: initialState.bookedHotels
+            };
+            return nextState;
         default:
             return state;
     }

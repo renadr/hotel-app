@@ -1,3 +1,5 @@
+@import './mixins';
+
 .App {
     min-height: 100vh;
     display: flex;
@@ -7,6 +9,9 @@
 .container {
     width: 1050px;
     margin: auto;
+    @include sm {
+        width: 100%;
+    }
 }
 
 .header {
@@ -51,17 +56,27 @@
     flex-direction: row;
     background-color: rgb(212, 212, 212);
     flex-grow: 1;
+    @include sm {
+        flex-direction: column-reverse;
+        width: 100%;
+    }
 }
 
 .section {
     width: 75%;
     padding: 10px;
+    @include sm {
+        width: auto;
+    }
 }
 
 .aside {
     width: 25%;
     background-color: rgb(235, 235, 235);
     padding: 10px;
+    @include sm {
+        width: auto;
+    }
 }
 
 a {

@@ -3,11 +3,11 @@ import './App.scss';
 import ShoppingCart from './components/shopping-cart/shopping-cart';
 import HotelsList from './components/hotels-list/hotels-list';
 import HotelDetails from './components/hotel-details/hotel-details';
+import Confirmation from './components/confirmation/confirmation';
 import { Provider } from 'react-redux';
 import Store from './store/configureStore';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { hotelsList, Hotel } from './global';
-import FormPersonnalInfos from './components/form-personnal-infos/form-personnal-infos';
+import { hotelsList } from './global';
 import Order from './components/order/order';
 
 interface MyProps {}
@@ -40,6 +40,7 @@ class App extends Component<MyProps, MyState> {
                                 />
                                 <Route path="/hotel/:id" component={HotelDetails} />
                                 <Route path="/order" component={Order} />
+                                <Route path="/confirmation" component={Confirmation} />
                             </section>
                             <aside className="aside">
                                 <ShoppingCart />

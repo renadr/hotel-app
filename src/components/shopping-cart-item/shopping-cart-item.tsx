@@ -4,7 +4,6 @@ import 'react-dates/initialize';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Hotel, hotelsList } from '../../global';
 
 interface MyProps {
     hotel: any;
@@ -52,7 +51,7 @@ class ShoppingCartItem extends Component<MyProps, MyState> {
 }
 const mapStateToProps = state => {
     return {
-        bookedHotels: state.bookedHotels
+        bookedHotels: state.addToCart.bookedHotels
     };
 };
 export default connect(mapStateToProps)(ShoppingCartItem);

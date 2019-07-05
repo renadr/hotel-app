@@ -4,10 +4,11 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { Hotel, hotelsList } from '../../global';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 interface MyProps {
     bookedHotels: any;
+    disabled: boolean;
 }
 
 interface MyState {}
@@ -27,7 +28,7 @@ class OrderSummary extends Component<MyProps, MyState> {
     }
 
     public render(): JSX.Element {
-        const { bookedHotels } = this.props;
+        const { bookedHotels, disabled } = this.props;
         const totalOrder = this.totalOrder(bookedHotels);
 
         return (
@@ -61,10 +62,12 @@ class OrderSummary extends Component<MyProps, MyState> {
                         </tr>
                     </tbody>
                 </table>
-                <button className="btn btn-primary">
-                    Valider la commande
-                    <FontAwesomeIcon icon={faArrowRight} />
-                </button>
+                <Link to="/confirmation">
+                    <button className="btn btn-primary" disabled={disabled}>
+                        Valider la commande
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </button>
+                </Link>
             </div>
         );
     }

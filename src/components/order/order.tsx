@@ -9,6 +9,7 @@ import FormPersonnalInfos from '../form-personnal-infos/form-personnal-infos';
 
 interface MyProps {
     bookedHotels: any;
+    personnalInfos: any;
 }
 
 interface MyState {}
@@ -19,14 +20,14 @@ class Order extends Component<MyProps, MyState> {
     }
 
     public render(): JSX.Element {
-        const { bookedHotels } = this.props;
-        console.log(bookedHotels);
+        const { bookedHotels, personnalInfos } = this.props;
+        const { persoInfosIsValid } = personnalInfos;
         let display;
         if (bookedHotels.length > 0) {
             display = (
                 <React.Fragment>
                     <FormPersonnalInfos />
-                    <OrderSummary bookedHotels={bookedHotels} />
+                    <OrderSummary bookedHotels={bookedHotels} disabled={!persoInfosIsValid} />
                 </React.Fragment>
             );
         } else {
@@ -38,7 +39,8 @@ class Order extends Component<MyProps, MyState> {
 
 const mapStateToProps = state => {
     return {
-        bookedHotels: state.bookedHotels
+        bookedHotels: state.addToCart.bookedHotels,
+        personnalInfos: state.personnalInfos
     };
 };
 export default connect(mapStateToProps)(Order);

@@ -62,7 +62,7 @@ class ShoppingCart extends Component<MyProps, MyState> {
 
 const mapStateToProps = state => {
     return {
-        bookedHotels: state.bookedHotels
+        bookedHotels: state.addToCart.bookedHotels
     };
 };
 export default connect(mapStateToProps)(ShoppingCart);

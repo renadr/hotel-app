@@ -1,4 +1,7 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import addToCart from './reducers/cartRecucer';
+import personnalInfos from './reducers/account';
 
-export default createStore(addToCart);
+const rootReducer = combineReducers({ addToCart, personnalInfos });
+const store = createStore(rootReducer);
+export default store;

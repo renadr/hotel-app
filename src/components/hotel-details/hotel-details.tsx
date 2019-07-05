@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import './hotel-details.scss';
 import 'react-dates/initialize';
 import { connect } from 'react-redux';
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import { Hotel, hotelsList } from '../../global';
 
 interface MyProps {
-    // hotel: Hotel;
     dispatch: any;
-    // bookedHotels: any;
     match: any;
 }
 
@@ -134,7 +132,7 @@ class HotelDetails extends Component<MyProps, MyState> {
 
 const mapStateToProps = (state): any => {
     return {
-        bookedHotels: state.bookedHotels
+        bookedHotels: state.addToCart.bookedHotels
     };
 };
 export default connect(mapStateToProps)(HotelDetails);

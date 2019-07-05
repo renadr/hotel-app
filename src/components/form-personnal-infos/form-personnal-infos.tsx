@@ -3,11 +3,12 @@ import './form-personnal-infos.scss';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
 import { faCheck, faEdit } from '@fortawesome/free-solid-svg-icons';
-import OrderSummary from '../order-summary/order-summary';
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
-interface MyProps {}
+interface MyProps {
+    dispatch: any;
+}
 
 interface MyState {
     firstname: string;
@@ -40,11 +41,34 @@ class FormPersonnalInfos extends Component<MyProps, MyState> {
         } as unknown) as Pick<MyState, keyof MyState>);
     }
 
+    public invalidate(): void {
+        this.setState(
+            {
+                validate: false
+            },
+            (): void => this.sendPersonnalInfos()
+        );
+    }
+
     public handleSubmit(event): void {
-        this.setState({
-            validate: true
-        });
+        this.setState(
+            {
+                validate: true
+            },
+            (): void => this.sendPersonnalInfos()
+        );
         event.preventDefault();
+    }
+
+    public sendPersonnalInfos(): void {
+        const { dispatch } = this.props;
+        const { firstname, lastname, address, email, validate } = this.state;
+        const persoInfos = {
+            persoInfosIsValid: validate,
+            persoInfos: { firstname, lastname, address, email }
+        };
+        const action = { type: 'CHANGE_PERSO_INFOS', value: persoInfos };
+        dispatch(action);
     }
 
     public render(): JSX.Element {
@@ -127,12 +151,7 @@ class FormPersonnalInfos extends Component<MyProps, MyState> {
                             <span className="list-value">{email}</span>
                         </li>
                     </ul>
-                    <button
-                        className="btn btn-outline"
-                        onClick={(): void => {
-                            this.setState({ validate: false });
-                        }}
-                    >
+                    <button className="btn btn-outline" onClick={(): void => this.invalidate()}>
                         <FontAwesomeIcon icon={faEdit} />
                         Modifier les informations
                     </button>
@@ -149,4 +168,10 @@ class FormPersonnalInfos extends Component<MyProps, MyState> {
     }
 }
 
-export default FormPersonnalInfos;
+const mapStateToProps = state => {
+    return {
+        bookedHotels: state.addToCart.bookedHotels,
+        personnalInfos: state.personnalInfos
+    };
+};
+export default connect(mapStateToProps)(FormPersonnalInfos);

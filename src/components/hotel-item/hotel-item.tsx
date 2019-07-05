@@ -75,19 +75,6 @@ class HotelItem extends Component<MyProps, MyState> {
                             </div>
                         </div>
                     </div>
-                    <div className="hotel-item-date-picker">
-                        <DateRangePicker
-                            startDate={startDate} // momentPropTypes.momentObj or null,
-                            startDateId="a" // PropTypes.string.isRequired,
-                            endDate={endDate} // momentPropTypes.momentObj or null,
-                            endDateId="b" // PropTypes.string.isRequired,
-                            onDatesChange={({ startDate, endDate }) =>
-                                this.setState({ startDate, endDate })
-                            } // PropTypes.func.isRequired,
-                            focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                        />
-                    </div>
                 </div>
             </Link>
         );
@@ -96,7 +83,7 @@ class HotelItem extends Component<MyProps, MyState> {
 
 const mapStateToProps = state => {
     return {
-        bookedHotels: state.bookedHotels
+        bookedHotels: state.addToCart.bookedHotels
     };
 };
 export default connect(mapStateToProps)(HotelItem);

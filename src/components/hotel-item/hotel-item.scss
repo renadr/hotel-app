@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .hotel-item {
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
@@ -6,6 +8,10 @@
     margin: 10px;
     overflow: hidden;
     height: auto;
+    @include sm {
+        width: 100%;
+        text-align: center;
+    }
 
     &:hover {
         transform: scale(1.02);
@@ -27,11 +33,17 @@
         transition: all ease 0.4s;
         overflow: hidden;
         height: 150px;
+        @include sm {
+            height: auto;
+        }
     }
 
     &-image {
         height: 200%;
         width: 35%;
+        @include sm {
+            display: none;
+        }
 
         & > div {
             height: 100%;
@@ -49,12 +61,20 @@
         flex-direction: column;
         width: 65%;
         align-self: start;
+        @include sm {
+            width: 100%;
+            text-align: center;
+        }
 
         &-top {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+            @include sm {
+                flex-direction: column;
+                justify-content: center;
+            }
 
             &-name {
                 h2 {
@@ -91,6 +111,10 @@
                 color: rgb(134, 134, 134);
                 font-size: 14px;
                 margin: 0;
+                @include sm {
+                    width: 100%;
+                    text-align: center;
+                }
             }
         }
     }

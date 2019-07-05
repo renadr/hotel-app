@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './hotels-list.scss';
 import HotelItem from '../hotel-item/hotel-item';
-import ShoppingCartItem from '../shopping-cart-item/shopping-cart-item';
 import { connect } from 'react-redux';
 import { Hotel } from '../../global';
 
@@ -27,7 +26,7 @@ class HotelsList extends Component<MyProps, MyState> {
 
 const mapStateToProps = state => {
     return {
-        bookedHotels: state.bookedHotels
+        bookedHotels: state.addToCart.bookedHotels
     };
 };
 export default connect(mapStateToProps)(HotelsList);
