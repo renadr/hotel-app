@@ -1,0 +1,56 @@
+.form-personnal-infos {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: all ease 0.4s;
+    margin: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 20px;
+
+    h1 {
+        margin: 0;
+    }
+}
+
+.input-custom {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    &.required {
+        label {
+            &::after {
+                content: ' *';
+                color: rgb(52, 103, 197);
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+    }
+
+    label {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input {
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(241, 241, 241);
+        font-size: 17px;
+        font-weight: bold;
+        padding: 10px 10px;
+        transition: all ease 0.4s;
+
+        &:active,
+        &:focus {
+            box-shadow: none;
+            outline: none;
+            transform: scale(1.02);
+        }
+    }
+}

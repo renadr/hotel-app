@@ -3,14 +3,7 @@ import './hotels-list.scss';
 import HotelItem from '../hotel-item/hotel-item';
 import ShoppingCartItem from '../shopping-cart-item/shopping-cart-item';
 import { connect } from 'react-redux';
-
-interface Hotel {
-    id: number;
-    name: string;
-    description: string;
-    imgUrl: string;
-    price: number;
-}
+import { Hotel } from '../../global';
 
 interface MyProps {
     hotelsList: Hotel[];
@@ -24,7 +17,7 @@ class HotelsList extends Component<MyProps, MyState> {
 
         return (
             <React.Fragment>
-                {hotelsList.map((hotel, index) => (
+                {hotelsList.map((hotel, index): any => (
                     <HotelItem hotel={hotel} key={index} />
                 ))}
             </React.Fragment>

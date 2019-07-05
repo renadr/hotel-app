@@ -1,54 +1,91 @@
 .shopping-cart-item {
-  display: flex;
-  flex-direction: row;
-  background-color: rgb(255, 255, 255);
-  margin: 10px auto;
-  border-radius: 5px;
-  height: 60px;
-  overflow: hidden;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    margin: 10px auto;
+    border-radius: 5px;
+    height: 60px;
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: stretch;
 
-  &:hover {
-    .shopping-cart-item-image {
-      div {
-        width: 90px;
-        background-size: 102%;
-      }
-    }
-  }
-
-  &-image {
-    height: 200%;
-
-    & > div {
-      height: 100%;
-      width: 80px;
-      background-size: 100%;
-      background-position: center;
-      clip-path: inset(0% 0 0% 0 round 0 100% 100% 0);
-      transition: all ease 0.4s;
-    }
-  }
-
-  &-price {
-    padding: 5px 10px;
-    p {
-      margin: 0;
+    &:hover {
+        .shopping-cart-item-image {
+            div {
+                width: 90px;
+                background-size: 102%;
+            }
+        }
+        .shopping-cart-item-remove {
+            width: 30px;
+        }
     }
 
-    &-value {
-      font-size: 24px;
-      line-height: 24px;
-      font-weight: bold;
-      text-align: center;
+    &-remove {
+        overflow: hidden;
+        cursor: pointer;
+        background-color: rgb(245, 61, 61);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: darken(rgb(245, 61, 61), 30%);
+        width: 0;
+        transition: all ease 0.4s;
+
+        * {
+            margin: 10px;
+        }
     }
 
-    &-text {
-      color: rgb(134, 134, 134);
-      font-size: 12px;
-      line-height: 16px;
-      text-align: center;
+    &-content {
+        display: flex;
+        flex-direction: row;
+        padding: 2px 10px;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
-  }
+
+    &-name {
+        font-weight: bold;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &-image {
+        height: 200%;
+
+        & > div {
+            height: 100%;
+            width: 80px;
+            background-size: 100%;
+            background-position: center;
+            clip-path: inset(0% 0 0% 0 round 0 100% 100% 0);
+            transition: all ease 0.4s;
+        }
+    }
+
+    &-price {
+        p {
+            margin: 0;
+        }
+
+        &-value {
+            font-size: 24px;
+            line-height: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        &-text {
+            color: rgb(134, 134, 134);
+            font-size: 12px;
+            line-height: 16px;
+            text-align: center;
+            font-weight: bold;
+        }
+    }
 }
